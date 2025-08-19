@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Korthals"
+  given-names: "Luke"
+  orcid: "https://orcid.org/0009-0006-2098-8679"
+title: "psp-data"
+version: 1.0.0
+date-released: 2025-08-18
+url: "https://github.com/lukekorthals/pursuing-smooth-pursuits-data"
