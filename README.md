@@ -1,5 +1,8 @@
 # pursuing-smooth-pursuits-data
-Eye movement benchmark data for developing and evaluating smooth pursuit classification algorithms. 
+Companion package for easy access of eye-movement benchmark data for smooth-pursuitclassification available on [OSF](https://osf.io/zx7hc/). 
+
+## Cite preprint as
+Korthals, L., Visser, I., & Kucharský, Š. (2025, August 23). Eye-movement benchmark data for smooth-pursuit classification. [https://doi.org/10.31234/osf.io/qhgak_v1](https://doi.org/10.31234/osf.io/qhgak_v1)
 
 ## Installation
 Make sure you have **Python (>=3.12)** and **R** installed.
