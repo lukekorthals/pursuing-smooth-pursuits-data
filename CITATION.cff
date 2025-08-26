@@ -1,10 +1,18 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you use this package or the data please cite the preprint."
+title: "Eye-movement benchmark data for smooth-pursuit classification"
 authors:
-- family-names: "Korthals"
-  given-names: "Luke"
-  orcid: "https://orcid.org/0009-0006-2098-8679"
-title: "psp-data"
-version: 1.0.0
-date-released: 2025-08-18
-url: "https://github.com/lukekorthals/pursuing-smooth-pursuits-data"
+  - family-names: "Korthals"
+    given-names: "Luke"
+    orcid: "https://orcid.org/0009-0006-2098-8679"
+  - family-names: "Visser"
+    given-names: "Ingmar"
+    orcid: "https://orcid.org/0000-0003-3855-2778"
+  - family-names: "Kucharský"
+    given-names: "Šimon"
+    orcid: "https://orcid.org/0000-0003-4192-1140"
+type: preprint
+doi: "10.31234/osf.io/qhgak.v1"
+url: "https://doi.org/10.31234/osf.io/qhgak.v1"
+date-released: 2025-08-23
+license: "CC-BY-4.0"
