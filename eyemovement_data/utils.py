@@ -65,7 +65,7 @@ def get_participant_ids(data_path: str = "data/raw") -> list:
     return participant_ids
 
 
-def download_osf_data(out_dir: str = "data/raw",
+def download_osf_data(raw_clean: str = "raw",
                       train_test: str = "both",
                       participants: str | List[str] = "all",
                       overwrite: bool = False,
@@ -83,8 +83,7 @@ def download_osf_data(out_dir: str = "data/raw",
     `osfclient` will perform an authenticated session.
 
     Args:
-        out_dir (str, optional): Local output root for the downloaded tree. Defaults to
-            "data/raw".
+        raw_clean (str, optional): Whether to download "raw", "clean", or "both" data. Defaults to "raw".
         train_test (str, optional): Which dataset split to fetch: one of {"train",
             "test", "both"}. Defaults to "both".
         participants (str | List[str], optional): "all" to download every participant
@@ -102,8 +101,12 @@ def download_osf_data(out_dir: str = "data/raw",
         None: Files are written to disk; progress is printed to stdout.
     """
     # Validate inputs
+    assert raw_clean in ["raw", "clean", "both"], "raw_clean must be 'raw', 'clean', or 'both'"
     assert train_test in ["train", "test", "both"], "train_test must be 'train', 'test' or 'both'"
     assert participants == "all" or isinstance(participants, list), "participants must be 'all' or a list of participant ids"
+
+    # Hardcode data because this is expected by downstream code
+    out_dir = "data"
 
     # Get OSF project
     osf = OSF()
@@ -128,6 +131,12 @@ def download_osf_data(out_dir: str = "data/raw",
             if not overwrite and os.path.exists(f"{out_path}/{file.name}"):
                 continue
 
+            # Skip raw or clean if specified
+            if raw_clean == "raw" and "clean" in file_dir:
+                continue
+            if raw_clean == "clean" and "raw" in file_dir:
+                continue
+
             # Skip train or test if specified
             if train_test == "train" and "test" in file_dir:
                 continue
@@ -145,7 +154,7 @@ def download_osf_data(out_dir: str = "data/raw",
             with open(f"{out_path}/{file.name}", "wb") as f:
                 file.write_to(f)
 
-def clean_raw_data(r_exe_path: str = "Rscript",):
+def clean_raw_data(r_exe_path: str = "Rscript", overwrite: bool = False):
     """
     Run the R cleaning pipeline (`clean_data.R`) to generate tidy CSVs.
 
@@ -156,10 +165,17 @@ def clean_raw_data(r_exe_path: str = "Rscript",):
     Args:
         r_exe_path (str, optional): Path or name of the Rscript binary. Defaults to
             "Rscript" (must be discoverable on PATH).
+        overwrite (bool, optional): If False, skip cleaning if `data/clean/` exists and
+            is non-empty. Defaults to False.
 
     Returns:
         None: Side effect is running the external R process and writing files.
     """
+    # Check if data/clean exists and is non-empty
+    clean_dir = Path("data/clean")
+    if clean_dir.exists() and any(clean_dir.iterdir()) and not overwrite:
+        print(f"{clean_dir} already exists and is non-empty. Skipping cleaning step.")
+        return
     r_script_path = files("eyemovement_data").joinpath("clean_data.R")
     print(f"Running {r_script_path} to clean raw data.")
     subprocess.run([r_exe_path, str(r_script_path)], check=True)
