@@ -379,7 +379,7 @@ class Participant:
                 loc='lower left',
                 bbox_to_anchor=(1.02, 0.08),
                 borderaxespad=0.,
-                title="Ground Truth",
+                title="Benchmark Labels",
                 frameon=False
             )
 
