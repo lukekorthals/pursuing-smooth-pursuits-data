@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this package or the data please cite the preprint."
-title: "Eye-movement benchmark data for smooth-pursuit classification"
+message: "If you use this repository, please cite the associated article."
+title: "pursuing-smooth-pursuits-data"
 authors:
   - family-names: "Korthals"
     given-names: "Luke"
@@ -11,8 +11,22 @@ authors:
   - family-names: "Kucharský"
     given-names: "Šimon"
     orcid: "https://orcid.org/0000-0003-4192-1140"
-type: preprint
-doi: "10.31234/osf.io/qhgak.v1"
-url: "https://doi.org/10.31234/osf.io/qhgak.v1"
-date-released: 2025-08-23
 license: "CC-BY-4.0"
+preferred-citation:
+  type: article
+  title: "Eye movement benchmark data for smooth-pursuit classification"
+  authors:
+    - family-names: "Korthals"
+      given-names: "Luke"
+      orcid: "https://orcid.org/0009-0006-2098-8679"
+    - family-names: "Visser"
+      given-names: "Ingmar"
+      orcid: "https://orcid.org/0000-0003-3855-2778"
+    - family-names: "Kucharský"
+      given-names: "Šimon"
+      orcid: "https://orcid.org/0000-0003-4192-1140"
+  journal: "Scientific Data"
+  year: 2026
+  volume: 13
+  article-number: 375
+  doi: "10.1038/s41597-026-06963-4"
